@@ -1,0 +1,26 @@
+//Code this in Atom or any other editior 
+//Save this is app.js or anyother name of yours you wish like .
+
+const express = require('express')
+const app =express();
+
+
+//bring in routes
+const postRoutes = require('./routes/post')
+
+
+app.get("/", postRoutes.getPosts);
+const port =8080;
+app.listen(port, () => {console.log('A Node JS api is listeing on port :${port}')
+});
+
+//Post request for routes 
+//this is a separate file in atom or anyother text ediitor 
+
+const getPosts =(req,res) =>  {
+  res.send("Hello world from nodejs");
+};
+
+module.exports ={
+  getPosts
+}
