@@ -1,0 +1,38 @@
+//The below code is for app.js 
+
+const express = require('express')
+const app =express();
+const morgan = require('morgan')
+
+//bring in routes
+const postRoutes = require('./routes/post')
+
+//Sample of middleware
+
+const myOwnMiddleware = (req,res,next) => {
+  console.log("Middleware applied");
+  next();
+
+};
+
+//middleware
+app.use(morgan("dev"));
+app.use(myOwnMiddleware);
+
+app.get("/", postRoutes.getPosts);
+const port =8080;
+app.listen(port, () => {console.log('A Node JS api is listeing on port :${port}')
+});
+
+
+
+//The below code is post request .
+//Save it as post.js
+
+const getPosts =(req,res) =>  {
+  res.send("Hello world from nodejs");
+};
+
+module.exports ={
+  getPosts
+}
